@@ -19,17 +19,13 @@
       var answer = [];
 
       let sameNumCount = win_nums.filter((x) => lottos.includes(x)).length;
-      // console.log(sameNumCount)
       let wrongNumCount = lottos.filter((x) => x === 0).length;
-      // console.log(wrongNumCount)
 
       let maxCount = sameNumCount + wrongNumCount;
       let minCount = sameNumCount;
 
       answer[0] = maxCount < 2 ? 6 : 6 - (maxCount - 1);
       answer[1] = minCount < 2 ? 6 : 6 - (minCount - 1);
-
-      console.log(answer);
 
       return answer;
     }
