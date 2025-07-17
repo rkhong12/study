@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로또 코딩테스트</title>
+  </head>
+  <body>
+    <h1>
+      <a
+        href="https://school.programmers.co.kr/learn/courses/30/lessons/77484"
+        target="_blank"
+        >https://school.programmers.co.kr/learn/courses/30/lessons/77484</a
+      >
+    </h1>
+  </body>
+  <script>
+    function solution(lottos, win_nums) {
+      var answer = [];
+
+      let sameNumCount = win_nums.filter((x) => lottos.includes(x)).length;
+      // console.log(sameNumCount)
+      let wrongNumCount = lottos.filter((x) => x === 0).length;
+      // console.log(wrongNumCount)
+
+      let maxCount = sameNumCount + wrongNumCount;
+      let minCount = sameNumCount;
+
+      answer[0] = maxCount < 2 ? 6 : 6 - (maxCount - 1);
+      answer[1] = minCount < 2 ? 6 : 6 - (minCount - 1);
+
+      console.log(answer);
+
+      return answer;
+    }
+  </script>
+</html>
