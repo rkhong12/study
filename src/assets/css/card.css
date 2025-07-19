@@ -10,6 +10,14 @@ button {
   border: none;
   border-radius: 0;
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -moz-appearance: textfield;
+}
 button {
   background-color: transparent;
   cursor: pointer;
@@ -131,4 +139,12 @@ html,
   width: 100%;
   height: 100%;
   cursor: pointer;
+}
+
+.ipt {
+  width: 100px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid #000;
+  border-radius: 4px;
 }
