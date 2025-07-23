@@ -1,7 +1,6 @@
 import React from "react";
 
-function TodoHeader({ state }) {
-  const { todoCount, doneCount, percent } = state;
+function TodoHeader({ todoCount, doneCount, percent }) {
   return (
     <header>
       <h1>Todo List</h1>

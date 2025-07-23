@@ -3,5 +3,7 @@ import TodoList from "./pages/TodoList.jsx";
 import CardGame from "./pages/CardGame.jsx";
 import MainLayout from "./pages/ContextStudy/MainLayout.jsx";
 import TodoLayout from "./pages/TodoStudy/TodoLayout.jsx";
+import Quiz0722 from "./pages/Quiz/Quiz0722.jsx";
+import Quiz072202 from "./pages/Quiz/Quiz072202.jsx";
 
-createRoot(document.getElementById("root")).render(<TodoLayout />);
+createRoot(document.getElementById("root")).render(<Quiz072202 />);

@@ -1,6 +1,6 @@
 import React from "react";
 
-function TodoButton({ state, dispatch }) {
+function TodoButton({ chkBtnTxt, todos, dispatch }) {
   return (
     <div className="todo-list-btn">
       <button
@@ -8,13 +8,13 @@ function TodoButton({ state, dispatch }) {
         className="btn btn-all-select"
         onClick={() => dispatch({ type: "chkAll" })}
       >
-        {state.chkBtnTxt}
+        {chkBtnTxt}
       </button>
       <button
         type="button"
         className="btn btn-confirm"
         onClick={() => {
-          const checked = state.todos.filter((todo) => todo.checked);
+          const checked = todos.filter((todo) => todo.checked);
           if (checked.length === 0) return alert("완료할 항목을 선택하세요.");
           dispatch({ type: "doneAll" });
         }}
@@ -25,7 +25,7 @@ function TodoButton({ state, dispatch }) {
         type="button"
         className="btn btn-del"
         onClick={() => {
-          const checked = state.todos.filter((todo) => todo.checked);
+          const checked = todos.filter((todo) => todo.checked);
           if (checked.length === 0) return alert("삭제할 항목을 선택하세요.");
           dispatch({ type: "delAll" });
         }}
@@ -36,4 +36,4 @@ function TodoButton({ state, dispatch }) {
   );
 }
 
-export default TodoButton;
+export default React.memo(TodoButton);
