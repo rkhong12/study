@@ -6,4 +6,4 @@ import TodoLayout from "./pages/TodoStudy/TodoLayout.jsx";
 import Quiz0722 from "./pages/Quiz/Quiz0722.jsx";
 import Quiz072202 from "./pages/Quiz/Quiz072202.jsx";
 
-createRoot(document.getElementById("root")).render(<Quiz072202 />);
+createRoot(document.getElementById("root")).render(<TodoLayout />);
