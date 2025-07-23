@@ -117,7 +117,6 @@ function BookLayout() {
   };
 
   const addBooks = useCallback(() => {
-    console.log(libraryBook);
     if (!inputValue.trim()) return alert("내용을 입력하세요.");
     if (libraryBook.includes(inputValue)) {
       alert("이미 등록된 도서 입니다.");
