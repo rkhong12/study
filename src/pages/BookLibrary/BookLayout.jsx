@@ -157,7 +157,9 @@ function BookLayout() {
     setSelectedLibraryBooks([]);
   };
 
-  const rentedBooks = loggedInUser ? loggedInUser.book : [];
+  const rentedBooks = loggedInUser
+    ? users.find((u) => u.name === loggedInUser.name)?.book ?? []
+    : [];
 
   return (
     <main className="container">
