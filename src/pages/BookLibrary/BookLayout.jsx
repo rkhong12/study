@@ -59,21 +59,40 @@ function BookLayout() {
   const [inputValue, setInputValue] = useState("");
   const [disabledBooks, setDisabledBooks] = useState([]);
   const [users, dispatch] = useReducer(BookReducer, initUsers);
+  const [loggedInUser, setLoggedInUser] = useState(null);
 
   useEffect(() => {
     const updated = users.reduce((acc, user) => acc.concat(user.book), []);
     setDisabledBooks(updated);
   }, [users]);
 
-  const loginChange = (e) => {
+  const loginChange = useCallback((e) => {
     setSelectUserName(e.target.value);
     setShowLoginResult(false);
-  };
+  }, []);
 
-  const loginUser = () => {
-    if (!selectUserName) return alert("로그인할 사람을 선택해주세요.");
-    setShowLoginResult(true);
-  };
+  const loginUser = useCallback(() => {
+    if (loggedInUser) {
+      setLoggedInUser(null);
+      setShowLoginResult(false);
+      setSelectedUserBooks([]);
+      setSelectedLibraryBooks([]);
+    } else {
+      if (!selectUserName) return alert("로그인할 사람을 선택해주세요.");
+      const user = users.find((u) => u.name === selectUserName);
+      setLoggedInUser(user);
+      setShowLoginResult(true);
+    }
+    setSelectUserName("");
+  }, [
+    loggedInUser,
+    selectUserName,
+    users,
+    setLoggedInUser,
+    setShowLoginResult,
+    setSelectedUserBooks,
+    setSelectedLibraryBooks,
+  ]);
 
   const handleLibraryCheckbox = (book) => {
     setSelectedLibraryBooks((prev) =>
@@ -88,14 +107,14 @@ function BookLayout() {
   };
 
   const rentBooks = () => {
-    if (!selectUserName) return alert("유저를 먼저 로그인 해주세요.");
+    if (!loggedInUser) return alert("유저를 먼저 로그인 해주세요.");
     if (selectedLibraryBooks.length === 0)
       return alert("대여할 도서를 선택하세요");
 
     dispatch({
       type: "rentBooks",
       payload: {
-        userName: selectUserName,
+        userName: loggedInUser.name,
         booksToRent: selectedLibraryBooks,
       },
     });
@@ -103,14 +122,14 @@ function BookLayout() {
   };
 
   const returnBooks = () => {
-    if (!selectUserName) return alert("유저를 먼저 로그인 해주세요.");
+    if (!loggedInUser) return alert("유저를 먼저 로그인 해주세요.");
     if (selectedUserBooks.length === 0)
       return alert("반납할 도서를 선택하세요");
 
     dispatch({
       type: "returnBooks",
       payload: {
-        userName: selectUserName,
+        userName: loggedInUser.name,
         booksToReturn: selectedUserBooks,
       },
     });
@@ -137,8 +156,8 @@ function BookLayout() {
     setSelectedLibraryBooks([]);
   };
 
-  const selectedUser = users.find((u) => u.name === selectUserName);
-  const rentedBooks = selectedUser ? selectedUser.book : [];
+  const rentedBooks = loggedInUser ? loggedInUser.book : [];
+
   return (
     <main className="container">
       <section className="contents">
@@ -147,13 +166,14 @@ function BookLayout() {
           name={users}
           loginChange={loginChange}
           loginUser={loginUser}
-          selectUserName={selectUserName}
+          loggedInUser={loggedInUser}
           showLoginResult={showLoginResult}
+          selectUserName={selectUserName}
         />
         {showLoginResult && (
           <div className="box">
             <div className="box-top">
-              <strong>{selectUserName}님이 대여한 도서 목록</strong>
+              <strong>{loggedInUser?.name}님이 대여한 도서 목록</strong>
               <button
                 type="button"
                 className="btn btn-del"

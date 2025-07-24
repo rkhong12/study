@@ -5,8 +5,9 @@ function BookHeader({
   name,
   loginChange,
   loginUser,
-  selectUserName,
+  loggedInUser,
   showLoginResult,
+  selectUserName,
 }) {
   return (
     <>
@@ -29,12 +30,12 @@ function BookHeader({
         </select>
 
         <button onClick={loginUser} type="button" className="btn-confirm btn">
-          로그인
+          {loggedInUser ? "로그아웃" : "로그인"}
         </button>
 
         {showLoginResult && (
           <p className="login-name">
-            <span>{selectUserName}</span>님
+            <span>{loggedInUser?.name}</span>님
           </p>
         )}
       </div>
@@ -42,4 +43,4 @@ function BookHeader({
   );
 }
 
-export default BookHeader;
+export default React.memo(BookHeader);
