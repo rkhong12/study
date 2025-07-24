@@ -69,6 +69,7 @@ function BookLayout() {
   const loginChange = useCallback((e) => {
     setSelectUserName(e.target.value);
     setShowLoginResult(false);
+    setLoggedInUser(null);
   }, []);
 
   const loginUser = useCallback(() => {
