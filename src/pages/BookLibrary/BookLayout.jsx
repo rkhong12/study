@@ -104,7 +104,8 @@ function BookLayout() {
 
   const returnBooks = () => {
     if (!selectUserName) return alert("유저를 먼저 로그인 해주세요.");
-    if (selectedUserBooks.length === 0) return;
+    if (selectedUserBooks.length === 0)
+      return alert("반납할 도서를 선택하세요");
 
     dispatch({
       type: "returnBooks",
