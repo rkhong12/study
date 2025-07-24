@@ -113,13 +113,13 @@ header h1 {
 .btn-add {
   background: #ffd43b;
 }
-.btn-del:hover {
+.btn-del:hover:not(:disabled) {
   color: #343a40;
 }
 .btn-confirm:hover:not(:disabled) {
   color: #26408b;
 }
-.btn-add:hover {
+.btn-add:hover:not(:disabled) {
   color: #a55c00;
 }
 .btn-wrap {

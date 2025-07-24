@@ -10,7 +10,12 @@ function BookInput({ inputValue, setInputValue, addBooks }) {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <button type="button" className="btn btn-add" onClick={addBooks}>
+      <button
+        type="button"
+        className="btn btn-add"
+        onClick={addBooks}
+        disabled={!inputValue.trim()}
+      >
         추가
       </button>
     </>
