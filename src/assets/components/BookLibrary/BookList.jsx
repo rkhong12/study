@@ -16,7 +16,10 @@ function BookList({ books, selectedBooks, onCheck, type, disabledBooks = [] }) {
               onChange={() => onCheck(book)}
               disabled={isDisabled}
             />
-            <label htmlFor={inputId}>{book}</label>
+            <label htmlFor={inputId}>
+              {book}
+              {isDisabled && <span className="rented"> (대여 중)</span>}
+            </label>
           </li>
         );
       })}

@@ -216,3 +216,6 @@ header h1 {
 .book-list li.disabled input {
   cursor: default;
 }
+.rented {
+  font-size: 11px;
+}
