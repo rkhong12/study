@@ -191,7 +191,8 @@ header h1 {
   background-color: #fff;
   border-radius: 4px;
 }
-.book-list li {
+.book-list li label {
+  cursor: pointer;
   padding: 10px;
   display: flex;
   align-items: center;
@@ -200,20 +201,14 @@ header h1 {
   background-color: #e9f1ff;
   border-radius: 4px;
   font-weight: 600;
-  cursor: pointer;
-}
-.book-list li label,
-.book-list li input {
-  cursor: pointer;
 }
 
-.book-list li.disabled {
+.book-list li.disabled label {
   background-color: #eee;
   color: #999;
   cursor: default;
 }
-.book-list li.disabled label,
-.book-list li.disabled input {
+.book-list li.disabled label {
   cursor: default;
 }
 .rented {

@@ -9,14 +9,14 @@ function BookList({ books, selectedBooks, onCheck, type, disabledBooks = [] }) {
 
         return (
           <li key={idx} className={isDisabled ? "disabled" : ""}>
-            <input
-              type="checkbox"
-              id={inputId}
-              checked={selectedBooks.includes(book)}
-              onChange={() => onCheck(book)}
-              disabled={isDisabled}
-            />
             <label htmlFor={inputId}>
+              <input
+                type="checkbox"
+                id={inputId}
+                checked={selectedBooks.includes(book)}
+                onChange={() => onCheck(book)}
+                disabled={isDisabled}
+              />
               {book}
               {isDisabled && <span className="rented"> (대여 중)</span>}
             </label>
