@@ -1,0 +1,80 @@
+.lotto-top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.lotto-top .btn-wrap {
+  margin-top: 20px;
+}
+
+.ball-box {
+  padding: 20px 40px;
+  margin-top: 10px;
+  background-color: #fff;
+  border-radius: 4px;
+}
+
+.winning-numbers {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.user-numbers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-numbers + .user-numbers {
+  margin-top: 20px;
+}
+.user-numbers.jc-sb {
+  justify-content: space-between;
+}
+
+.ball-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.ball {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background-color: #f1f1f1;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  font-size: 18px;
+}
+
+.bonus-ball {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.bonus-ball .ball {
+  background-color: #ffcc00;
+}
+
+.user-numbers .ball {
+  background-color: #c3c3c3;
+}
+
+.result {
+  font-size: 18px;
+  font-weight: 600;
+  color: #0300b4;
+}
+
+.matched {
+  border: 3px solid gold;
+  background: #fff8d1 !important;
+  color: rgb(211, 176, 0);
+}

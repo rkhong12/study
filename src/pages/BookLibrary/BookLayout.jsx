@@ -1,10 +1,10 @@
 import React from "react";
 import "../../assets/css/library.css";
-import BookHeader from "../../assets/components/BookLibrary/BookHeader";
+import BookHeader from "../../components/BookLibrary/BookHeader";
 import { useEffect } from "react";
 import { useState } from "react";
-import BookList from "../../assets/components/BookLibrary/BookList";
-import BookInput from "../../assets/components/BookLibrary/BookInput";
+import BookList from "../../components/BookLibrary/BookList";
+import BookInput from "../../components/BookLibrary/BookInput";
 import { useCallback } from "react";
 import { useReducer } from "react";
 
