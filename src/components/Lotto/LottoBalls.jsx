@@ -4,12 +4,13 @@ function LottoBalls({ numbers, type, matched }) {
   return (
     <div className="ball-wrap">
       {numbers?.map((item, idx) => {
+        const ballId = `${type}-${idx}`;
         const value = type === "winningNumber" ? item.num : item;
         const isMatched = (matched || []).includes(value);
 
         return (
           <div
-            key={idx}
+            key={ballId}
             className={`ball ${isMatched ? "matched" : ""}`}
             style={
               type === "winningNumber" ? { backgroundColor: item.color } : {}
