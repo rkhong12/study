@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>주차 요금 계산 코딩테스트</title>
+  </head>
+  <body>
+    <h1>
+      <a
+        href="https://school.programmers.co.kr/learn/courses/30/lessons/92341"
+        target="_blank"
+        >https://school.programmers.co.kr/learn/courses/30/lessons/92341</a
+      >
+    </h1>
+  </body>
+  <script>
+    function solution(fees, records) {
+      var answer = [];
+      let carLogs = {};
+      let totalTimes = {};
+
+      // 차량번호 별 로그 정리(+ 시->분 변경)
+      records.forEach((record) => {
+        let [time, carNum, state] = record.split(" ");
+        let [hour, minute] = time.split(":").map(Number);
+
+        if (!carLogs[carNum]) carLogs[carNum] = [];
+        carLogs[carNum].push({ time: hour * 60 + minute, state });
+      });
+      // console.log('차량별 로그 >>>',carLogs)
+
+      let carNums = Object.keys(carLogs).sort();
+      carNums.forEach((carNum) => {
+        let totalTime = 0;
+        let lastInTime = null;
+
+        // 출차 시간 계산
+        carLogs[carNum].forEach(({ time, state }) => {
+          if (state === "IN") {
+            lastInTime = time;
+          } else if (state === "OUT" && lastInTime !== null) {
+            totalTime += time - lastInTime;
+            lastInTime = null;
+          }
+        });
+        // IN 만 있을 경우
+        if (lastInTime !== null) {
+          totalTime += 1439 - lastInTime;
+        }
+        totalTimes[carNum] = totalTime;
+        // console.log('최종 시간 계산 >>>', totalTimes[carNum])
+
+        // 출차 요금 계산
+        if (totalTimes[carNum] <= fees[0]) {
+          answer.push(fees[1]);
+        } else {
+          answer.push(
+            fees[1] +
+              Math.ceil((totalTimes[carNum] - fees[0]) / fees[2]) * fees[3]
+          );
+        }
+      });
+      // console.log(answer)
+
+      return answer;
+    }
+  </script>
+</html>
