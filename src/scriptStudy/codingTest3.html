@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가장 많이 받은 선물 코딩테스트</title>
+  </head>
+  <body>
+    <h1>
+      <a
+        href="https://school.programmers.co.kr/learn/courses/30/lessons/258712"
+        target="_blank"
+        >https://school.programmers.co.kr/learn/courses/30/lessons/258712</a
+      >
+    </h1>
+  </body>
+  <script>
+    function solution(friends, gifts) {
+      var answer = 0;
+
+      let giftsSep = gifts.map((x) => x.split(" "));
+
+      // 주고받은 횟수
+      let giveCounts = Array(friends.length).fill(0);
+      let receiveCounts = Array(friends.length).fill(0);
+
+      giftsSep.forEach(([from, to]) => {
+        let fromIdx = friends.indexOf(from);
+        let toIdx = friends.indexOf(to);
+        giveCounts[fromIdx]++;
+        receiveCounts[toIdx]++;
+      });
+
+      // 선물 주고받은 결과
+      let giftCount = [];
+      for (let i = 0; i < friends.length; i++) {
+        giftCount[i] = Array(friends.length).fill(0);
+      }
+
+      giftsSep.forEach(([from, to]) => {
+        let i = friends.indexOf(from);
+        let j = friends.indexOf(to);
+        giftCount[i][j]++;
+      });
+
+      // 선물 지수
+      let giftScore = [];
+      for (let i = 0; i < friends.length; i++) {
+        giftScore[i] = giveCounts[i] - receiveCounts[i];
+      }
+
+      // 다음 달 선물 받을 횟수
+      let nextGift = Array(friends.length).fill(0);
+      for (let i = 0; i < friends.length; i++) {
+        for (let j = i + 1; j < friends.length; j++) {
+          if (giftCount[i][j] > giftCount[j][i]) {
+            nextGift[i]++;
+          } else if (giftCount[i][j] < giftCount[j][i]) {
+            nextGift[j]++;
+          } else {
+            if (giftScore[i] > giftScore[j]) nextGift[i]++;
+            else if (giftScore[i] < giftScore[j]) nextGift[j]++;
+          }
+        }
+      }
+
+      answer = Math.max(...nextGift);
+      return answer;
+    }
+  </script>
+</html>
