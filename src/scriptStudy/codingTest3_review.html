@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>가장 많이 받은 선물 코딩테스트</title>
+  </head>
+  <body>
+    <h1>
+      <a
+        href="https://school.programmers.co.kr/learn/courses/30/lessons/258712"
+        target="_blank"
+        >https://school.programmers.co.kr/learn/courses/30/lessons/258712</a
+      >
+    </h1>
+  </body>
+  <script>
+    function solution(friends, gifts) {
+      // 준 사람과 받은 사람 분리
+      const gifters = gifts.map((g) => g.split(" "));
+
+      // 객체를 만들기 > 이름, 내가 준 사람, 준 선물 개수,  선물 지수
+      const users = {};
+      for (let me of friends) {
+        users[me] = { recivers: [], gitfCount: 0, giftPoint: 0 };
+        gifters.forEach(([giver, reciver]) => {
+          if (me === giver) {
+            users[me]["recivers"].push(reciver);
+          }
+        });
+      }
+
+      return answer;
+    }
+  </script>
+</html>
