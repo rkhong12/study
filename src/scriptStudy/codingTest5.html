@@ -22,7 +22,6 @@
       let box = Array.from({ length: Math.floor(apples / m) }, (_, i) =>
         applesSort.slice(i * m, i * m + m)
       );
-      let minScore = [];
       for (let i = 0; i < box.length; i++) {
         let min = Math.min(...box[i]);
         answer += min * m;
