@@ -17,39 +17,34 @@
   <script>
     function solution(n, w, num) {
       var answer = 0;
-      let array = Array.from({ length: w }, () => []);
+
+      // 박스 전체 높이
+      const totalRows = Math.ceil(n / w);
+
+      // 박스를 2차배열로 만들자
+      const box = Array.from({ length: totalRows }, () => Array(w).fill(0));
+
+      // 박스 만들기
       let count = 1;
-      let i = 0;
-      let right = true;
-      while (count <= n) {
-        array[i].push(count);
-        count++;
+      let targetRow = 0;
+      let targetCol = 0;
 
-        if (right) {
-          // 오른쪽 방향으로 진행
-          if (i === w - 1) {
-            // 오른쪽에 닿았을 때
-            right = false;
-          } else {
-            i++;
+      for (let i = totalRows; i >= 0; i--) {
+        const row = [];
+        for (let j = 0; j < w; j++) {
+          if (count > n) {
+            row.push(0);
+            continue;
           }
-        } else {
-          // 왼쪽 방향으로 진행
-          if (i === 0) {
-            // 왼쪽에 닿았을 때
-            right = true;
-          } else {
-            i--;
-          }
+          row.push(count++);
         }
+        const reversCnt = totalRows % 2 == 0 ? 0 : 1;
+        box[i] = i % 2 == reversCnt ? row.slice().reverse : row.slice();
       }
-      // num 을 가지고 있는 배열의 index
-      let idxOf = array.findIndex((x) => x.includes(num));
-      // num 을 가지고 있는 배열의 num index
-      let arrayInIdxOf = array[idxOf].findIndex((x) => x === num);
-
-      // num부터 위에 있는 상자 개수
-      answer = array[idxOf].slice(arrayInIdxOf).length;
+      if (box[i].indexOf(num) > -1) {
+        targetCol = box[i].indexOf(num);
+        targetRow = i;
+      }
 
       return answer;
     }

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>과일 장수 코딩테스트</title>
+  </head>
+  <body>
+    <h1>
+      <a
+        href="https://school.programmers.co.kr/learn/courses/30/lessons/135808"
+        target="_blank"
+        >https://school.programmers.co.kr/learn/courses/30/lessons/135808</a
+      >
+    </h1>
+  </body>
+  <script>
+    function solution(k, m, score) {
+      var answer = 0;
+      let apples = score.length;
+      let applesSort = score.sort((a, b) => b - a);
+      let box = Array.from({ length: Math.floor(apples / m) }, (_, i) =>
+        applesSort.slice(i * m, i * m + m)
+      );
+      let minScore = [];
+      for (let i = 0; i < box.length; i++) {
+        let min = Math.min(...box[i]);
+        answer += min * m;
+      }
+      return answer;
+    }
+  </script>
+</html>
