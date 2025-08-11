@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>과일 장수 코딩테스트</title>
+  </head>
+  <body>
+    <h1>
+      <a
+        href="https://school.programmers.co.kr/learn/courses/30/lessons/135808"
+        target="_blank"
+        >https://school.programmers.co.kr/learn/courses/30/lessons/135808</a
+      >
+    </h1>
+  </body>
+  <script>
+    function solution(skill, skill_trees) {
+      var answer = 0;
+
+      const treeArray = skill_trees.map((x) =>
+        [...x].filter((word) => skill.includes(word)).join("")
+      );
+      console.log(treeArray);
+
+      for (let value of treeArray) {
+        if (skill.startsWith(value)) answer++;
+      }
+
+      return answer;
+    }
+  </script>
+</html>
